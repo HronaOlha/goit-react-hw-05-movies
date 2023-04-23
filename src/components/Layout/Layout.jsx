@@ -1,17 +1,18 @@
-import { Link, Outlet } from 'react-router-dom';
-import { Header } from './Layout.styled';
+import { Outlet } from 'react-router-dom';
+import { Container, Header, StyledLink, Nav } from './Layout.styled';
 
 const SharedLayout = () => {
   return (
     <>
       <Header>
-        <nav>
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/products">Products</Link>
-        </nav>
+        <Nav>
+          <StyledLink to="/">Home</StyledLink>
+          <StyledLink to="/movies">Movies</StyledLink>
+        </Nav>
       </Header>
-      <Outlet />
+      <Container>
+        <Outlet />
+      </Container>
     </>
   );
 };

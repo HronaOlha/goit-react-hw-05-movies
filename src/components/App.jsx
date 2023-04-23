@@ -3,14 +3,17 @@
 import { Route, Routes } from 'react-router-dom';
 
 import SharedLayout from './Layout/Layout';
+import Home from '../pages/Home';
+import Movies from '../pages/Movies';
 
 const App = () => {
   return (
     <>
-      <Routes basename="/goit-react-hw-05-movies">
-        <Route path="/" element={<SharedLayout />} />
-        {/* <Route path="/about" element={<About />} />
-        <Route path="/products" element={<Products />} /> */}
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/movies" element={<Movies />} />
+        </Route>
       </Routes>
     </>
   );
