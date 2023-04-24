@@ -5,24 +5,27 @@ const Home = () => {
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/trending/movie/week?api_key=2ead4d55a2c7da4f5313610b563685be`
+      `https://api.themoviedb.org/3/trending/movie/day?api_key=2ead4d55a2c7da4f5313610b563685be`
     )
-      .then(res => {
-        return res.json();
-      })
+      .then(res => res.json())
       .then(({ results }) => {
         // const rrr = results.map(result => setTitles(result.original_title));
         setTitles(results);
       });
   }, []);
 
-  console.log(titles);
+  // console.log(titles);
 
   return (
     <>
-      <h1>Home</h1>
-      {titles.length > 0 &&
-        titles.map(title => <p key={title.id}>{title.original_title}</p>)}
+      <h1>Trending today</h1>
+      {titles.length > 0 && (
+        <ul>
+          {titles.map(title => (
+            <li key={title.id}>{title.original_title}</li>
+          ))}
+        </ul>
+      )}
     </>
   );
 };
