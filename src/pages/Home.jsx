@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Home = () => {
+  const location = useLocation();
   const [titles, setTitles] = useState([]);
 
   useEffect(() => {
@@ -9,12 +11,9 @@ const Home = () => {
     )
       .then(res => res.json())
       .then(({ results }) => {
-        // const rrr = results.map(result => setTitles(result.original_title));
         setTitles(results);
       });
   }, []);
-
-  // console.log(titles);
 
   return (
     <>
@@ -22,7 +21,11 @@ const Home = () => {
       {titles.length > 0 && (
         <ul>
           {titles.map(title => (
-            <li key={title.id}>{title.original_title}</li>
+            <li key={title.id}>
+              <Link to={`/movies/${title.id}`} state={{ from: location }}>
+                {title.original_title}
+              </Link>
+            </li>
           ))}
         </ul>
       )}
