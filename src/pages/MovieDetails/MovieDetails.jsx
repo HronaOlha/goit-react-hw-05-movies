@@ -27,14 +27,19 @@ const MovieDetails = () => {
       .then(result => {
         setMovieInfo(result);
         setIsLoading(false);
+        if (result.status_message) {
+          setMovieInfo();
+        }
       });
   }, [movieId]);
 
   return (
     <>
-      <BackLink to={backLinkHref.current}> &#8592; Back to products</BackLink>
+      <BackLink to={backLinkHref.current}>
+        &#8592; Back to previous page
+      </BackLink>
       {isLoading && <Loader />}
-      {movieInfo && (
+      {movieInfo ? (
         <>
           <MovieDetailsSection>
             <MovieImg
@@ -70,6 +75,8 @@ const MovieDetails = () => {
             <Outlet />
           </Suspense>
         </>
+      ) : (
+        <p>The resource you requested could not be found.</p>
       )}
     </>
   );
